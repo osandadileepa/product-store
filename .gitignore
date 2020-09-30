@@ -36,3 +36,4 @@ out/
 ### Custom ###
 logs
 src/main/resources/static/
+bin

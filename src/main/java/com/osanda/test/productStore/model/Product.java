@@ -10,8 +10,14 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
+/***
+ * All the basic product details
+ * 
+ * @author Osanda Wedamulla
+ *
+ */
 
+@Entity
 @Getter
 @Setter
 @Table(name = "product", schema = "store_data")
@@ -30,6 +36,6 @@ public class Product extends BaseModel {
 
 	private Double cartonPrice;
 
-	private String image;
+	private String imageUrl;
 
 }
