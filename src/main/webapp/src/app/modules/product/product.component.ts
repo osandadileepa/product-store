@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {RESULT_ENDPOINT, ProductService} from "./product.service";
-import {Student} from "../models/student";
-import {Result} from "../models/result";
+import {Component, OnInit} from '@angular/core';
+import {ProductService} from "./product.service";
+import {Product} from "../models/product";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {PriceCalculate} from "../models/price-calculate";
 
 @Component({
   selector: 'app-student',
@@ -10,44 +11,46 @@ import {Result} from "../models/result";
 })
 export class ProductComponent implements OnInit {
 
-  private studentId : number = 1;
+  public products: Product[] = [];
+  public productFormGroup: FormGroup;
+  public priceModel: PriceCalculate;
 
-  public student: Student;
-  public results: Result[] = [];
-
-  constructor(private service: ProductService) { }
+  constructor(private service: ProductService, private fb: FormBuilder) {
+    this.productFormGroup = this.fb.group({
+      productId: [null, Validators.required],
+      unit: [0, Validators.required]
+    });
+  }
 
   ngOnInit() {
-    this.getResultByStudentId();
-    this.getStudentDetails();
+    this.getAllProductsAvailable();
   }
 
   /***
-   * get result for a particulat student
+   *
+   * get all product details
    *
    * @author Osanda Wedamulla
    */
-  private getResultByStudentId() {
+  private getAllProductsAvailable() {
 
-    this.service.getResultsFromStudentId(this.studentId).subscribe((result: any) => {
-      const resultValue = result._embedded[RESULT_ENDPOINT];
-      this.results = resultValue;
+    this.service.getAllProducts().subscribe(value => {
+      this.products = value;
     });
 
-  }// getResultByStudentId()
+  }//getAllProductsAvailable()
 
-  /***
-   *
-   * get avialable student details
-   *
-   * @author Osanda Wedamulla
-   */
-  private getStudentDetails() {
+  public calculatePrice() {
 
-    this.service.getStudentDetailsFromId(this.studentId).subscribe((value: any) =>{
-      this.student = value;
+    console.log(this.productFormGroup.value);
+    const obj: any = this.productFormGroup.value;
+    const id = obj.productId;
+    const unit = obj.unit;
+
+
+    this.service.getPriceFromProductIdAndUnit(id, unit).subscribe(value => {
+      this.priceModel = value;
     });
-
-  }//getStudentDetails()
+  }// calculatePrice()
 
 }// ProductComponent {}

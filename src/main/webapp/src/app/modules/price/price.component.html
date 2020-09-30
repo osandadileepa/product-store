@@ -1,6 +1,56 @@
 <div fxLayout="column" fxLayoutAlign="center center">
 
-  <h1> Calculate Price for a selected product ........</h1>
+  <h1> Calculate Price for a selected product and Selected Unit Limit </h1>
+
+
+  <form [formGroup]="priceFormGroup" fxLayoutAlign="start center" fxLayout="row" fxFlex="70" fxLayoutGap="1vw">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Product</mat-label>
+      <mat-select formControlName="productId">
+        <mat-option *ngFor="let product of products" [value]="product.id">
+          {{product.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Select Unit Range</mat-label>
+      <mat-select formControlName="unit">
+        <mat-option *ngFor="let unit of [1, 10, 20, 30, 40, 50]" [value]="unit">
+          {{unit}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button [disabled]="!priceFormGroup.valid" mat-raised-button color="warn" (click)="calculatePriceForRange()"> Calculate Price Unit Range </button>
+
+  </form>
+
+
+  <div fxLayoutAlign="start center" fxLayout="column" fxFlex="70">
+
+    <table border="5">
+      <tr>
+        <th>Carton Amount </th>
+        <th>Single Unit Amount </th>
+        <th>Carton Cost </th>
+        <th>Single Unit Cost </th>
+        <th>Total Cost </th>
+      </tr>
+
+      <tr *ngFor="let price of priceList">
+        <td>{{price.cartonAmount}}</td>
+        <td>{{price.singleUnitsAmount}}</td>
+        <td>{{price.costOfCartons | currency}}</td>
+        <td>{{price.costOfSingleUnits | currency}}</td>
+        <td>{{price.totalCost | currency}}</td>
+      </tr>
+
+    </table>
+
+  </div>
+
   <a routerLink="/product-list"> <h3> Product List View </h3></a>
 
 </div>

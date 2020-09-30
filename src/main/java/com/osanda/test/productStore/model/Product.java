@@ -21,7 +21,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "product", schema = "store_data")
-public class Product extends BaseModel {
+public class Product extends BaseModelObject {
 
 	private static final long serialVersionUID = 5985730429007872956L;
 
@@ -32,10 +32,10 @@ public class Product extends BaseModel {
 	@Column(unique = true, length = 100)
 	private String name;
 
-	private Integer cartonUnits;
+	private Integer unitsPerCarton;
 
 	private Double cartonPrice;
 
-	private String imageUrl;
+	private String description;
 
 }
