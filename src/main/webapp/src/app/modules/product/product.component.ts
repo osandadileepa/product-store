@@ -3,6 +3,7 @@ import {ProductService} from "./product.service";
 import {Product} from "../models/product";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {PriceCalculate} from "../models/price-calculate";
+import {FormDataModel} from "../models/form-data-model";
 
 @Component({
   selector: 'app-student',
@@ -27,7 +28,6 @@ export class ProductComponent implements OnInit {
   }
 
   /***
-   *
    * get all product details
    *
    * @author Osanda Wedamulla
@@ -40,13 +40,17 @@ export class ProductComponent implements OnInit {
 
   }//getAllProductsAvailable()
 
+  /***
+   * calculate single price for product
+   *
+   * @author Osanda Wedamulla
+   */
   public calculatePrice() {
 
-    console.log(this.productFormGroup.value);
-    const obj: any = this.productFormGroup.value;
-    const id = obj.productId;
-    const unit = obj.unit;
+    const obj: FormDataModel = this.productFormGroup.value;
 
+    let id = obj.productId;
+    let unit = obj.unit;
 
     this.service.getPriceFromProductIdAndUnit(id, unit).subscribe(value => {
       this.priceModel = value;

@@ -31,20 +31,16 @@ export class ProductService {
     const url =  PRICE_ENDPOINT + '/' + productId;
 
     return this.http.get<PriceCalculate>(url, { params }).pipe(take(1));
-
   }// getPriceFromProductIdAndUnit()
 
 
   /***
-   * get student details
+   * get all products
    *
    * @author Osanda Wedammulla
-   *
-   * @param studentId
    */
   public getAllProducts() : Observable<Product[]> {
     return this.http.get<Product[]>(PRODUCT_ENDPOINT).pipe(take(1));
   }// getStudentDetailsFromId()
-
 
 }// ProductService {}

@@ -7,7 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /***
@@ -20,7 +22,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "product", schema = "store_data")
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "product")
 public class Product extends BaseModelObject {
 
 	private static final long serialVersionUID = 5985730429007872956L;

@@ -13,7 +13,7 @@ spring:
       hibernate:
         hikari:
           auto_commit: false
-        default_schema: store_data
+        default_schema: public
         show_sql: false
         dialect: org.hibernate.dialect.PostgreSQLDialect
         jdbc:
@@ -22,7 +22,7 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
   profiles:
     active:
-      - prod
+    - prod

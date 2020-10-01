@@ -143,7 +143,7 @@ public class PriceCalculateService {
 	 */
 	public List<PriceCalculateDto> getPriceListForRange(Long productId, Integer unitRange) throws Exception {
 
-		List<PriceCalculateDto> priceModelList = new ArrayList<PriceCalculateDto>();
+		List<PriceCalculateDto> priceModelList = new ArrayList<>();
 
 		Product product = this.getProductFromDatabase(productId);
 

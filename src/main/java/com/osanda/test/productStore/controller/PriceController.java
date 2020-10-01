@@ -35,18 +35,14 @@ public class PriceController {
 			@RequestParam(name = "unit") Integer units) {
 
 		try {
-
 			PriceCalculateDto priceDto = this.priceCalculateService.calculateProductPriceFromUnits(id, units);
 
 			return ResponseEntity.ok(priceDto);
-
 		} catch (ProductNotFoundException e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Product does not exits !!!");
-
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Product Price Calculation Error !!!");
 		}
-
 	}// calculatePriceFromProductIdAndTotalUnits()
 	
 	/***
@@ -61,19 +57,15 @@ public class PriceController {
 			@RequestParam(name = "unit") Integer unitRange) {
 
 		try {
-
 			List<PriceCalculateDto> priceListForRange = this.priceCalculateService.getPriceListForRange(productId,
 					unitRange);
 
 			return ResponseEntity.ok(priceListForRange);
-
 		} catch (ProductNotFoundException e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Product does not exits !!!");
-
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Product Price Calculation Error !!!");
 		}
-
 	}// getPriceListCalculated()
 
 }// PriceController()

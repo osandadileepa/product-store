@@ -1,3 +1,8 @@
+/**
+ * model to handle Product Details
+ *
+ * @author Osanda Wedamulla
+ */
 export class Product {
 
   id?: number;
