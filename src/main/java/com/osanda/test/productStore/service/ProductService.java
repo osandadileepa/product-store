@@ -18,6 +18,8 @@ public class ProductService {
 	private final ProductRepository productRepository;
 
 	/***
+	 * save a product in the database
+	 * 
 	 * @author Osanda Wedamulla
 	 * @return Product
 	 */
@@ -31,6 +33,8 @@ public class ProductService {
 	}// addProduct()
 
 	/***
+	 * get all the products from the database
+	 * 
 	 * @author Osanda Wedamulla
 	 * @return List<Product>
 	 */

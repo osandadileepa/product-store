@@ -1,0 +1,33 @@
+version: "3"
+
+volumes:
+  store-postgresql:
+    driver: local
+services:
+  postgresql-service:
+    image: postgres:12.4
+    container_name: store-postgresql
+    volumes:
+      - store-postgresql:/var/lib/postgresql/data/
+    networks:
+      - store-network
+    environment:
+      POSTGRES_DB: store
+      POSTGRES_USER: demo
+      POSTGRES_PASSWORD: demo31234
+    ports:
+      - 5432:5432
+  web-service:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - store-network
+    depends_on:
+      - postgresql-service
+
+networks:
+  store-network:
+    driver: bridge

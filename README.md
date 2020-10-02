@@ -19,7 +19,6 @@ Make sure following are available
 
 - PostgreSQL instance should be exposed in localhost in port 5432
 - Default database store should be created with the credentials available in the yml file
-- jdbc:postgresql://localhost:5432/store
 
 ## Application source and development environment
 
@@ -55,4 +54,20 @@ java -jar -Dspring.profiles.active=dev build/libs/product-store-0.0.1-SNAPSHOT.j
 ```
 
 After executing above command application present at http://localhost:8080
+
+## Test cases
+
+- All the test cases written to test application core logics are available at src/test/java
+
+## Docker Build
+
+- Docker based build solution has implemented using Dockerfile and docker compose file also available to create the necessary environments. 
+- Using the following command in the root directory to execute the build.
+
+```bash
+docker-compose up --build
+```
+
+- Whole application will be presented at http://localhost:8080/#/
+
 

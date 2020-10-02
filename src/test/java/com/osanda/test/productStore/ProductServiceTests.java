@@ -37,8 +37,15 @@ public class ProductServiceTests {
         assertThat(allProducts).isNotEmpty();
         assertThat(allProducts).isNotNull();
 
-        assertThat(allProducts.size()).isEqualTo(this.productList.size());
+        //check first product details
+        assertThat(allProducts.get(0).getName()).isEqualTo(this.productList.get(0).getName());
+        assertThat(allProducts.get(0).getUnitsPerCarton()).isEqualTo(this.productList.get(0).getUnitsPerCarton());
+        assertThat(allProducts.get(0).getCartonPrice()).isEqualTo(this.productList.get(0).getCartonPrice());
 
+        //check second product details
+        assertThat(allProducts.get(1).getName()).isEqualTo(this.productList.get(1).getName());
+        assertThat(allProducts.get(1).getUnitsPerCarton()).isEqualTo(this.productList.get(1).getUnitsPerCarton());
+        assertThat(allProducts.get(1).getCartonPrice()).isEqualTo(this.productList.get(1).getCartonPrice());
     }// getAllAvailableProductsTest()
 
     @Test

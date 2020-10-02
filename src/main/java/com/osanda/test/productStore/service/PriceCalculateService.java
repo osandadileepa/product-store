@@ -38,11 +38,11 @@ public class PriceCalculateService {
 		calculatePrice.setProductId(productId);
 
 		// calculate carton and single units and set to price model
-		this.calculateNumberOfCartonsAndSingleUnits(product, units, calculatePrice);
+		PriceCalculateDto calculatePriceUnits = this.calculateNumberOfCartonsAndSingleUnits(product, units, calculatePrice);
 		// calculate prices from price model details
-		this.calculatePricesFromProductAndGeneratedPriceModel(product, calculatePrice);
+		PriceCalculateDto calculatePriceModel = this.calculatePricesFromProductAndGeneratedPriceModel(product, calculatePriceUnits);
 
-		return calculatePrice;
+		return calculatePriceModel;
 
 	}// calculateProductPriceFromUnits()
 
